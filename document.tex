@@ -1,0 +1,88 @@
+\documentclass[11pt,a4paper]{scrartcl}
+\usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{lmodern}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{listings}
+\lstset{
+	upquote=true,
+	basicstyle=\ttfamily,
+	columns=fullflexible,
+	breaklines=true,
+	postbreak=\mbox{$\hookrightarrow$\space}
+}
+
+\author{Gary Moore}
+\title{Network Database Applications Assignment 1: Individual Activities}
+
+\begin{document}
+	\maketitle
+	
+	\section{Introduction}\label{introduction}
+	
+	With the planning completed for the library database system, what remains to be implemented is the database itself. The database is to be implemented using Transactional Structured Query Language which will require a database server, and database management software for writing queries and executing them on the server.
+	
+	\section{Requirements}\label{requirements}
+	
+	The following software will be used:
+	
+	\begin{itemize}
+		\item MSSQL Server 2017 for Docker
+		\item SQLPro management software for macOS
+	\end{itemize}
+	
+	I’ll be using the Docker image of MSSQL Server as it can be deployed on any operating system that can run a virtual machine. It also runs from within a sandboxed container, which makes it measurably more secure than running it on the host machine. I personally needed to use a Docker image as MSSQL Server is not software that can run natively on macOS.
+	
+	Docker will likely only be used for the development of the database. When moved to a production environment, the database will likely be exported and run natively on a Windows server.
+	
+	Typically, SQL Management Studio by Microsoft is used to manage T-SQL databases, but due to the software only being available on one platform I used SQLPro, which has a layout that matches very closely to the Microsoft software.
+	
+	\section{SQL Development}\label{sql requirements}
+	
+	\subsection{tblContact}\label{tblcontact}
+	
+	The first table will be \texttt{tblContact} as \texttt{tblCustomer} and \texttt{tblEmployee} are dependent upon it.
+	
+	\lstinputlisting[language=sql]{queries/CreateTblContact.sql}
+	
+	The \texttt{CREATE TABLE} command will create the table \texttt{tblCustomer}, with columns then entered in the bracket delimiters. The first common is an \texttt{INT}, which is shorthand for integer. It is an auto incrementing number that is also the primary key, with \texttt{IDENTITY (1,1)} meaning it increments by one with each new field and \texttt{PRIMARY KEY} denoting that this is a fields identifying column. Each primary key is automatically enforced with constraints to ensure that a null value isn’t used, and that each field must have a unique primary key.
+	
+	Almost every key after the primary key uses the \texttt{VARCHAR} datatype, which can contain a string, and is of variable length. A column of this data type that’s notable is \texttt{cnPostcode}. A post code is typically considered to be fixed length, however there’s a fairly common edge case of a 6-character long post code, for example BT7 5NA. This is why \texttt{VARCHAR} is used instead of \texttt{CHAR}. Another notable aspect of these columns is most of them use the constraint \texttt{NOT NULL}, which means that a null value cannot be entered into this column.
+	
+	\texttt{CHAR} of length 11 is used for the phone number as an integer isn’t appropriate here because we don’t want to perform any calculations on a phone number, and it is possible to enter a value in excess of the 32bit integer limit. \texttt{CHAR} is used instead of \texttt{VARCHAR} because all UK phone numbers are of length 11.
+	
+	To insert fields into this table we first use the \texttt{INSERT INTO} command followed by the table name \texttt{tblContact}. Next we declare what columns we wish to input information into in delimiters separated by commas. On a new line you write the \texttt{VALUES} keyword followed by delimited entries on a new line with strings surrounded by single quotes and numbers entered without quotes separated with a comma.
+	
+	The command \texttt{SELECT * FROM tblContact} will display all fields in the table.
+	
+	\subsection{tblCustomer}\label{tblcustomer}
+	
+	This is a small table as most of the details are contained in \texttt{tblContact}. The two tables use a one to many relationship to avoid redundant data.
+	
+	\lstinputlisting[language=sql]{queries/CreateTblCustomer.sql}
+	
+	This table is the first case where a foreign key is used, and a different syntax is used to create a foreign key compared to a primary key. Instead of declaring it with \texttt{PRIMARY KEY}, we write \texttt{FOREIGN KEY REFERENCES \textit{table}(\textit{column})}. The purpose of a foreign key is to link this table with another table that it references data from.
+	
+	We must associate each customer with its corresponding entry in tblContact, and to do this we insert the corresponding foreign key value into tblCustomer.
+	
+	\subsection{tblEmployee}\label{tblEmployee}
+	
+	Similarly to tblCustomer we must initialise a foreign key, however there are extra fields for this table with employee specific information.
+	
+	\lstinputlisting[language=sql]{queries/CreateTblEmployee.sql}
+	
+	Every employee will need a password to get access to the database system and appropriate permissions that will define what that employee can change in the database. For example an administrator will be able to drop and add tables, where as a user may only be able to alter or add data to the database.
+	
+	\subsection{tblAuthor}\label{tblAuthor}
+	
+	This table will have a many to many relationship with \texttt{tblBook}. A junction table will be used between the two tables, more information will be in section \ref{tblbookauthor}.
+	
+	\lstinputlisting[language=sql]{queries/CreateTblAuthor.sql}
+	
+	
+	
+	\subsection{tblBookAuthor}\label{tblbookauthor}
+\end{document}
