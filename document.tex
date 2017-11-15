@@ -8,8 +8,11 @@
 \usepackage{graphicx}
 \usepackage{listings}
 \lstset{
+	frame=shadowbox,
+	numbers=left,
+	showstringspaces=false,
 	upquote=true,
-	basicstyle=\ttfamily,
+	basicstyle=\ttfamily\small,
 	columns=fullflexible,
 	breaklines=true,
 	postbreak=\mbox{$\hookrightarrow$\space}
@@ -68,7 +71,7 @@
 	
 	We must associate each customer with its corresponding entry in tblContact, and to do this we insert the corresponding foreign key value into tblCustomer.
 	
-	\subsection{tblEmployee}\label{tblEmployee}
+	\subsection{tblEmployee}\label{tblemployee}
 	
 	Similarly to tblCustomer we must initialise a foreign key, however there are extra fields for this table with employee specific information.
 	
@@ -76,13 +79,45 @@
 	
 	Every employee will need a password to get access to the database system and appropriate permissions that will define what that employee can change in the database. For example an administrator will be able to drop and add tables, where as a user may only be able to alter or add data to the database.
 	
-	\subsection{tblAuthor}\label{tblAuthor}
+	\subsection{tblAuthor}\label{tblauthor}
 	
 	This table will have a many to many relationship with \texttt{tblBook}. A junction table will be used between the two tables, more information will be in section \ref{tblbookauthor}.
 	
 	\lstinputlisting[language=sql]{queries/CreateTblAuthor.sql}
 	
+	For any new books that are added to the database system, the author names will go into a second document to avoid redundant data, as authors can write more than one book.
 	
+	\subsection{tblBook}\label{tblbook}
+	
+	This table has a many to many relationship with \texttt{tblAuthor}.
+	
+	\lstinputlisting[language=sql]{queries/CreateTblBook.sql}
+	
+	A unique aspect of this table; it uses the ISBN number of the book as its primary key. Because the number is so big, we use \texttt{VARCHAR} instead of the \texttt{INT} data type, which can be used as the primary key so long as it's unique. We're using a variable data type because an ISBN can be 10 or 13 digits long.
+	
+	We also create columns for the title and genre of the book and use \texttt{INSERT INTO} to fill out some values.
 	
 	\subsection{tblBookAuthor}\label{tblbookauthor}
+	
+	This is a junction table between \texttt{tblBook} and \texttt{tblAuthor}. The purpose of this table is to create a link between these two tables, as a many to many relationship cannot exist directly between these two tables.
+	
+	\lstinputlisting[language=sql]{queries/CreateTblBookAuthor.sql}
+	
+	This is the first instance where a composite key is created. To create one of these, we create two foreign keys from the tables \texttt{tblBook} and \texttt{tblAuthor} and then join these together using \texttt{PRIMARY KEY (auAuthorID, bkISBN)}. This joins the two together to create a unique key.
+	
+	\subsection{tblLeasing}\label{tblleasing}
+	
+	This table establishes three relationships, one with \texttt{tblCustomer}, \texttt{tblBookLeasing} and a junction table.
+	
+	\lstinputlisting[language=sql]{queries/CreateTblLeasing.sql}
+	
+	This table has some relatively complex transactions going on. To begin with, it is interacting with transactional and non-transactional tables, with transactions happening in a junction table.
+	
+	\subsection{tblBookLeasing}\label{tblbookleasing}
+	
+	This is a transactional table that is a junction between \texttt{tblBook} and \texttt{tblLeasing}. It is responsible for documenting the checkout and return date 
+	
+	\lstinputlisting[language=sql]{queries/CreateTblBookLeasing.sql}
+	
+	This table makes use of a composite key, the creation of which is described in \ref{tblbookauthor}. 
 \end{document}
