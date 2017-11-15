@@ -7,6 +7,10 @@ CREATE TABLE tblLeasing (
 INSERT INTO tblLeasing
 (cuCustomerID, emEmployeeID)
 VALUES
-()
+(1, 4),
+(2, 4),
+(3, 2),
+(4, 3),
+(5, 5)
 
 SELECT * FROM tblLeasing

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.11.5)  15 NOV 2017 02:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.11.5)  15 NOV 2017 21:54
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -891,31 +891,32 @@ File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 (./queries/CreateTblCustomer.sql) [3] (./queries/CreateTblEmployee.sql)
 (./queries/CreateTblAuthor.sql [4]) (./queries/CreateTblBook.sql) [5]
 (./queries/CreateTblBookAuthor.sql) (./queries/CreateTblLeasing.sql) [6]
-(./queries/CreateTblBookLeasing.sql) [7] (./document.aux) ) 
+(./queries/CreateTblBookLeasing.sql) [7] [8] (./document.aux) ) 
 Here is how much of TeX's memory you used:
- 7321 strings out of 492985
- 112118 string characters out of 6132586
- 526708 words of memory out of 5000000
- 10740 multiletter control sequences out of 15000+600000
+ 7322 strings out of 492985
+ 112139 string characters out of 6132586
+ 526718 words of memory out of 5000000
+ 10741 multiletter control sequences out of 15000+600000
  38648 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  51i,7n,51p,8846b,1673s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/
-2017/texmf-dist/fonts/enc/dvips/lm/lm-rmtt.enc}{/usr/local/texlive/2017/texmf-d
-ist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/local/texlive/2017/texmf-dist/fonts/enc
-/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/lm/
-lm-mathit.enc}{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}
-</usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/loca
-l/texlive/2017/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texlive/2
-017/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2017/texmf-d
-ist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2017/texmf-dist/font
-s/type1/public/lm/lmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/pu
-blic/lm/lmtk10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lm
-tt10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on document.pdf (7 pages, 173894 bytes).
+{/usr/local/texl
+ive/2017/texmf-dist/fonts/enc/dvips/lm/lm-rmtt.enc}{/usr/local/texlive/2017/tex
+mf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/local/texlive/2017/texmf-dist/fonts
+/enc/dvips/lm/lm-mathsy.enc}{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips
+/lm/lm-mathit.enc}{/usr/local/texlive/2017/texmf-dist/fonts/enc/dvips/lm/lm-rm.
+enc}</usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lmmi10.pfb></usr/
+local/texlive/2017/texmf-dist/fonts/type1/public/lm/lmr10.pfb></usr/local/texli
+ve/2017/texmf-dist/fonts/type1/public/lm/lmr12.pfb></usr/local/texlive/2017/tex
+mf-dist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2017/texmf-dist/
+fonts/type1/public/lm/lmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type
+1/public/lm/lmtk10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/l
+m/lmtt10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lmtti10.
+pfb>
+Output written on document.pdf (8 pages, 176056 bytes).
 PDF statistics:
- 69 PDF objects out of 1000 (max. 8388607)
- 51 compressed objects within 1 object stream
+ 72 PDF objects out of 1000 (max. 8388607)
+ 53 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

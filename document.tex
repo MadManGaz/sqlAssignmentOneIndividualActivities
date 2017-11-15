@@ -121,7 +121,25 @@
 	
 	This table makes use of a composite key, the creation of which is described in \ref{tblbookauthor}. \texttt{tblBookLeasing} is also the first use of the \texttt{DATE} data type, which is of course used for storing date information. When a customer decides to check out a book, the transaction will eventually make its way to this table, where the lease and return date are stored in \texttt{lsLeaseDate} and \texttt{lsReturnDate}.
 	
-	\subsection{Notable Transactions}
+	\subsection{Notable Transactions}\label{notabletransactions}
+	
+	\subsubsection*{Adding a book}
+	
+	When an employee wants to add a book to the database, they will use a form that will inner join \texttt{tblAuthor}, \texttt{tblBook} and \texttt{tblBookAuthor}. This data is inserted into the table through this form.
+	
+	\subsubsection*{Removing a book}
+	
+	The process or removing a book involves some conditional logic. If the book is the only one in the system by that author, the author can be removed too. If the book has other books by the same author, the author will not be deleted. This can be done with an \texttt{IF...ELSE} statement.
+		
+	\subsubsection*{Leasing a book}
+	
+	The procedure for checking out a book uses a network of tables to carry out the transaction, again to make sure there's no data redundancy. The tables \texttt{tblCustomer}, \texttt{tblLEasing}, \texttt{tblEmployee}, \texttt{tblBook} and \texttt{tblBookLeasing} will be used to create a record of a lease with \texttt{tblContact} queried to get the customer number from any of the customers details.
+	
+	\section{Constraints}
+	
+	I will make use of constraints to ensure that only valid data is entered into the database. These constraints can be created at \texttt{CREATE TABLE}, or they can be appended to the column definitions using \texttt{ALTER TABLE}.
+	
+	A constraint is a system in a database that applies limitations to what information can be input into a particular column in a table. An example of a constraint is \texttt{NOT NULL}, which doesn't allow the user to enter a null value into their table. Another example is \texttt{UNIQUE}, which only allows a unique value compared to other values entered into the same column to exist. Violation of a constraint will result in an error which is displayed in the SQL managers console.
 	
 	
 \end{document}
