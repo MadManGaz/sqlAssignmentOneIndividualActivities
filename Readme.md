@@ -4,7 +4,7 @@ This document is the write up for the individual portion of Assignment 1 of Netw
 
 This document contains the following:
 
-- Description of implementation of 4 tables
+- Description of implementation of 8 tables
 - Description of data constraints used
 - Explaination of locking modes in the database
 - Explaination of rollback systems
