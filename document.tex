@@ -43,7 +43,7 @@
 	
 	Typically, SQL Management Studio by Microsoft is used to manage T-SQL databases, but due to the software only being available on one platform I used SQLPro, which has a layout that matches very closely to the Microsoft software.
 	
-	\section{SQL Development}\label{sql requirements}
+	\section{Tables}\label{sql requirements}
 	
 	\subsection{tblContact}\label{tblcontact}
 	
@@ -119,5 +119,9 @@
 	
 	\lstinputlisting[language=sql]{queries/CreateTblBookLeasing.sql}
 	
-	This table makes use of a composite key, the creation of which is described in \ref{tblbookauthor}. 
+	This table makes use of a composite key, the creation of which is described in \ref{tblbookauthor}. \texttt{tblBookLeasing} is also the first use of the \texttt{DATE} data type, which is of course used for storing date information. When a customer decides to check out a book, the transaction will eventually make its way to this table, where the lease and return date are stored in \texttt{lsLeaseDate} and \texttt{lsReturnDate}.
+	
+	\subsection{Notable Transactions}
+	
+	
 \end{document}

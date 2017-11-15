@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.11.5)  15 NOV 2017 01:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017) (preloaded format=pdflatex 2017.11.5)  15 NOV 2017 02:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -895,7 +895,7 @@ File: ts1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 Here is how much of TeX's memory you used:
  7321 strings out of 492985
  112118 string characters out of 6132586
- 526725 words of memory out of 5000000
+ 526708 words of memory out of 5000000
  10740 multiletter control sequences out of 15000+600000
  38648 words of font info for 48 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -912,7 +912,7 @@ ist/fonts/type1/public/lm/lmssbx10.pfb></usr/local/texlive/2017/texmf-dist/font
 s/type1/public/lm/lmsy10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/pu
 blic/lm/lmtk10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lm
 tt10.pfb></usr/local/texlive/2017/texmf-dist/fonts/type1/public/lm/lmtti10.pfb>
-Output written on document.pdf (7 pages, 173689 bytes).
+Output written on document.pdf (7 pages, 173894 bytes).
 PDF statistics:
  69 PDF objects out of 1000 (max. 8388607)
  51 compressed objects within 1 object stream
