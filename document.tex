@@ -18,7 +18,7 @@
 ]{microtype}
 \usepackage{listings}
 \lstset{
-	frame=shadowbox,
+	frame=lines,
 	numbers=left,
 	showstringspaces=false,
 	upquote=true,
@@ -277,5 +277,97 @@
 	
 	\section{Locking}\label{locking}
 	
-	We use locking in databases to prevent multible users from accessing data simulatneously. The reason this is a desirable feature is because if data is accessed at the same time it can have negative side effects such as data mutation. If someone alters information in a column, and another person does the same thing, one of these transactions may get overwritten, and it would be as if one of these transactions never happened. This would be very bad in for example a bank account, where real money could be lost as a result.
+	Without locking, users may experience one more issues when interacting with a database system. These are called concurrency side effects, and can range from inconvenient, to destructive.
+	
+	This is an issue that occurs when two users try to alter the same value, at the same time. What can happen is both users will receive a message confirming a successful edit, however one users data will be overwritten when they read it back again.
+	
+	This is avoided by introducing locks to the query that prevents two transactions from happening at the same time by making transactions wait until the current one in progress has finished. Users will have to wait until a transaction has completed until they can update the value.
+	
+	\subsubsection*{Lock types}
+	
+	\paragraph{Shared lock}
+	
+	This is for all intents and purposes a read only locking mechanism. It allows for concurrent access but that data is immutable.
+	
+	\paragraph{Exclusive lock}
+	
+	This only allows one user/transaction to modify a value at any one time. No other type of lock can be placed on an exclusive lock.
+	
+	\paragraph{Update lock}
+	
+	This lock will only effect the row that a transaction is modifying values on. When the user runs a transaction modifying information in a row, that row is locked, and no other transactions can modify any values on this row. This is similar to an exclusive lock, however the difference is a shared lock can still read data from a row that is seeing a transaction with an update lock concurrently.
+	
+	\subsubsection*{Examples}
+	
+	An example of locking is shown in section \ref{rollback}.
+	
+	\subsection{Rollback}\label{rollback}
+	
+	The \texttt{ROLLBACK} function is a very useful feature that protects against accidental data loss by creating save points that you can restore to in a transaction.
+	
+	For example, in a business your boss may ask you to delete client information in a table that contains 300 records. Without the use of \texttt{ROLLBACK}, all this information will be lost, and your boss will ask you to spend your weekend re-entering this information from hard copies.
+	
+	If you used the \texttt{SAVE TRANSACTION} command, you can simply use the command \texttt{ROLLBACK} to almost instantly restore all the data to its prior state, and you can spend the weekend at home with your feet up.
+	
+	\subsubsection*{Examples}
+	
+	Here is the code we are going to execute.
+	
+	\lstinputlisting[language=sql]{queries/RollbackDelete.sql}
+	
+	And here is our table before the code is executed.
+	
+	\begin{center}
+		\includegraphics[width=0.45\linewidth]{images/RollbackBeforeDelete}
+	\end{center}
+	
+	Now I'll delete the data.
+	
+	\begin{center}
+		\includegraphics[width=0.45\linewidth]{images/RollbackAfterDelete}
+	\end{center}
+	
+	I'll restore the data using \texttt{ROLLBACK TRAN}.
+	
+	\lstinputlisting[language=sql]{queries/RollbackRestore.sql}
+	
+	This image shows that the restore operation was successful.
+	
+	\begin{center}
+		\includegraphics[width=0.45\linewidth]{images/RollbackRestore}
+	\end{center}
+	
+	Feedback to the user can be integrated by using the \texttt{PRINT} statement after the appropriate command is executed. This function is used like this; \texttt{PRINT `string'}.
+	
+	You can also include multiple restore points by using the following structure:
+	
+	\lstinputlisting[language=sql]{queries/RollbackMultipleSavepoints.sql}
+	
+	You can then roll back to any of these save points, for example \texttt{ROLLBACK TRAN SP2} will recover the data right up to the point before deleting \texttt{tblAuthor}.
+	
+	\section{Backup}\label{backup}
+	
+	A good data backup system is essential to avoid wasted time and money. Backups ensure that there is a snapshot to restore from should something catastrophic happen to the data stored in the database system.
+	
+	Databases are at the backbone of most good web services and websites, so if you don't backup your database systems at all, a failure could mean that your business is wiped out.
+	
+	The process of backing up in Microsoft SQL Management Studio is fairly simple. To backup data you go to \texttt{Tasks $\rightarrow$ Generate Scripts}. You will see the following dialogue:
+	
+	\begin{center}
+		\includegraphics[width=0.85\linewidth]{images/GenerateScripts}
+	\end{center}
+	
+	Continue through this dialogue making sure to change `Schema Only' to `Schema and Data'. You will eventually get the option to save a script that will recreate the database on a fresh system.
+	
+	\section{Evaluation}\label{evaluation}
+	
+	\paragraph{Requirements}
+	
+	Just to remind myself, the purpose of this database is to process transactions for a library. The customer transaction must be able to take a book, and put it though the system creating a reciept for the customer who leased the book with a return date, book title as well as what librarian served the customer that day.
+	
+	The second transaction that occurs is when the logged in librarian adds or removes a book, with conditional logic necessary for this as a many to many relationship is used, and the database system must be able to intelligently know when to delete the author or not depending on if the author has other published works in the library.
+	
+	\paragraph{Effectiveness}
+	
+	I think this database system meets the standards of a small library pretty well, however I am not sure if this solution will be able to scale very well. Normalisation was carried out appropriate, creating 8 tables in total with relationships established through foreign keys, allowing for the use of inner joins in queries. User defined data types were used in order to make use of constraints which aids in data validation. Problem columns such as postcodes, phone numbers and email addresses validate properly, however there remains small problems with the email constraint that could be ironed out with a more advanced regular expression function. More extensive use of user defined data types would have also been helpful for the sake of reusable constraints, but this is not essential.
 \end{document}
