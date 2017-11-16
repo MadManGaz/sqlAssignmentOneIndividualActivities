@@ -1,7 +1,7 @@
 CREATE TABLE tblCustomer
 (
 	cuCustomerID INT IDENTITY (1,1) PRIMARY KEY,
-	cnContactID INT FOREIGN KEY REFERENCES tblContact(cnContactID)
+	cnContactID INT NOT NULL FOREIGN KEY REFERENCES tblContact(cnContactID)
 )
 
 INSERT INTO tblCustomer

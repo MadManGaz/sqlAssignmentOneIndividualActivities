@@ -1,5 +1,5 @@
 CREATE TABLE tblAuthor (
-    auAuthorID INT identity(1,1) PRIMARY KEY,
+    auAuthorID INT IDENTITY(1,1) PRIMARY KEY,
     auFirstName VARCHAR(30) NOT NULL,
     auSurname VARCHAR(30) NOT NULL
 )

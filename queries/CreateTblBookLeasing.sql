@@ -1,8 +1,8 @@
 CREATE TABLE tblBookLeasing (
-    bkISBN VARCHAR (13) FOREIGN KEY REFERENCES tblBook(bkISBN),
-    lsLeasingID INT FOREIGN KEY REFERENCES tblLeasing(lsLeasingID),
+    bkISBN VARCHAR (13) NOT NULL FOREIGN KEY REFERENCES tblBook(bkISBN),
+    lsLeasingID INT NOT NULL FOREIGN KEY REFERENCES tblLeasing(lsLeasingID),
     lsLeaseDate DATE NOT NULL,
-    lsReturnDate DATE NOT NULL
+    lsReturnDate DATE NOT NULL,
     PRIMARY KEY (lsLeasingID, bkISBN)
 )
 
