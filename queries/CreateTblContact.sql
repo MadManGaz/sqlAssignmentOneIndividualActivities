@@ -3,12 +3,12 @@ CREATE TABLE tblContact
 	cnContactID INT IDENTITY (1,1) PRIMARY KEY,
 	cnFirstName VARCHAR(30) NOT NULL,
 	cnSurname VARCHAR(30) NOT NULL,
-	cnPhone CHAR(11) NOT NULL,
-	cnEmail VARCHAR(30) NOT NULL,
+	cnPhone PhoneNumber,
+	cnEmail Email,
 	cnAddress1 VARCHAR(30) NOT NULL,
 	cnCity VARCHAR(30) NOT NULL,
 	cnCounty VARCHAR(30) NOT NULL,
-	cnPostcode VARCHAR(7) NOT NULL
+	cnPostcode Postcode
 )
 
 INSERT INTO tblContact
